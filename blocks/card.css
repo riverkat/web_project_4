@@ -1,0 +1,33 @@
+.card__container {
+  padding-top: 46px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px 17px;
+}
+
+.card {
+  background-color: #ffffff;
+  max-width: 282px;
+  min-height: 360px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 10px;
+}
+
+.card__title {
+  margin: 0;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 25px 20px 30px 20px;
+}
+
+.card__image {
+  border-radius: 10px 10px 0px 0px;
+}
