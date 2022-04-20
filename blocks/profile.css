@@ -1,9 +1,17 @@
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .profile__name {
   font-family: "Inter", "Arial", sans-serif;
   font-size: 42px;
   font-weight: 500;
   line-height: 1.14;
   margin: 0;
+  grid-area: name;
+  padding-right: 25px;
 }
 
 .profile__occupation {
@@ -12,10 +20,58 @@
   font-size: 18px;
   line-height: 1;
   margin: 0;
+  grid-area: job;
+  align-self: start;
 }
 
 .profile__photo {
   border-radius: 50%;
   max-width: 168px;
-  max-height: 127px;
+  max-height: 126px;
+  grid-area: photo;
+  margin: 0 auto;
+}
+
+.profile__edit-button {
+  max-width: 24px;
+  max-height: 24px;
+  background-color: #000000;
+  grid-area: edit;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  transition: 0.2s ease-in;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.profile__add-button {
+  min-width: 150px;
+  min-height: 50px;
+  background-color: #000000;
+  align-self: center;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 2px;
+  transition: 0.2s ease-in;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.profile__info {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 168px auto auto;
+  grid-template-areas:
+    "photo name edit"
+    "photo job .";
+  padding-top: 37px;
+  justify-content: start;
+  align-items: end;
+  grid-row-gap: 16px;
 }
