@@ -3,9 +3,11 @@
   display: flex;
   padding: 45px 0 40px 0;
   border-bottom: 1px solid #545454;
-<<<<<<< HEAD
-  max-width: 1280px;
-=======
   max-width: 880px;
->>>>>>> feature/element
+}
+
+@media screen and (max-width: 470px) {
+  .header {
+    padding: 28px 0 32px 0;
+  }
 }

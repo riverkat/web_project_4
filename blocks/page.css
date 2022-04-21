@@ -1,17 +1,6 @@
 .page {
   background-color: #000000;
   color: #ffffff;
-  padding: 0 200px 0 200px;
-<<<<<<< HEAD
   max-width: 880px;
   margin: 0 auto;
-=======
-  margin: 0 auto;
-  max-width: 880px;
-}
-@media screen and (max-width: 1000px) {
-  .page {
-    padding: 0 100px 0 100px;
-  }
->>>>>>> feature/element
 }
