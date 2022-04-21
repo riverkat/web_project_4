@@ -14,6 +14,7 @@
       <header class="header">
         <img class="logo" src="./images/logo.svg" alt="Around the US logo" />
       </header>
+
       <main class="main">
         <section class="profile">
           <img
@@ -30,6 +31,30 @@
                 alt="edit button image"
               />
             </button>
+            <div class="profile__form-container">
+              <form class="profile__form">
+                <h2 class="form__title">Edit profile</h2>
+                <fieldset class="form__fieldset">
+                  <input
+                    class="form__input"
+                    id="full-name"
+                    type="text"
+                    placeholder="Name"
+                  />
+                </fieldset>
+                <fieldset class="form__fieldset">
+                  <input
+                    class="form__input"
+                    id="occupation"
+                    type="text"
+                    placeholder="About me"
+                  />
+                </fieldset>
+                <fieldset class="form__fieldset-button">
+                  <button class="form__button">Save</button>
+                </fieldset>
+              </form>
+            </div>
             <p class="profile__occupation">Explorer</p>
           </div>
           <button class="profile__add-button">
@@ -49,7 +74,15 @@
                 src="./images/yosemite_valley.jpg"
                 alt="image of river in Yosemite Valley"
               />
-              <h2 class="card__title">Yosemite Valley</h2>
+              <div class="card__title-container">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button class="card__button card__button_active">
+                  <img
+                    class="card__button-icon"
+                    src="./images/heart_icon_disabled.svg"
+                  />
+                </button>
+              </div>
             </article>
             <article class="card">
               <img
@@ -57,7 +90,15 @@
                 src="./images/lake_louise.jpg"
                 alt="image of mountains near Lake Louise"
               />
-              <h2 class="card__title">Lake Louise</h2>
+              <div class="card__title-container">
+                <h2 class="card__title">Lake Louise</h2>
+                <button class="card__button card__button_active">
+                  <img
+                    class="card__button-icon"
+                    src="./images/heart_icon_disabled.svg"
+                  />
+                </button>
+              </div>
             </article>
             <article class="card">
               <img
@@ -65,7 +106,15 @@
                 src="./images/bald_mountains.jpg"
                 alt="image of sunset over Bald Mountains"
               />
-              <h2 class="card__title">Bald Mountains</h2>
+              <div class="card__title-container">
+                <h2 class="card__title">Bald Mountains</h2>
+                <button class="card__button card__button_active">
+                  <img
+                    class="card__button-icon"
+                    src="./images/heart_icon_disabled.svg"
+                  />
+                </button>
+              </div>
             </article>
             <article class="card">
               <img
@@ -73,7 +122,15 @@
                 src="./images/latemar.jpg"
                 alt="Night sky over mountains"
               />
-              <h2 class="card__title">Latemar</h2>
+              <div class="card__title-container">
+                <h2 class="card__title">Latemar</h2>
+                <button class="card__button card__button_active">
+                  <img
+                    class="card__button-icon"
+                    src="./images/heart_icon_disabled.svg"
+                  />
+                </button>
+              </div>
             </article>
             <article class="card">
               <img
@@ -81,7 +138,15 @@
                 src="./images/vanoise_nat_park.jpg"
                 alt="lakesid view of Vanoise National Park"
               />
-              <h2 class="card__title">Vanoise National Park</h2>
+              <div class="card__title-container">
+                <h2 class="card__title">Vanoise National Park</h2>
+                <button class="card__button card__button_active">
+                  <img
+                    class="card__button-icon"
+                    src="./images/heart_icon_disabled.svg"
+                  />
+                </button>
+              </div>
             </article>
             <article class="card">
               <img
@@ -89,14 +154,24 @@
                 src="./images/lago_di_braies.jpg"
                 src="image of boats docked at pier on Lago di Braies"
               />
-              <h2 class="card__title">Lago di Braies</h2>
+              <div class="card__title-container">
+                <h2 class="card__title">Lago di Braies</h2>
+                <button class="card__button card__button_active">
+                  <img
+                    class="card__button-icon"
+                    src="./images/heart_icon_disabled.svg"
+                  />
+                </button>
+              </div>
             </article>
           </div>
         </section>
       </main>
+
       <footer class="footer">
         <p class="footer__paragraph">© 2021 Around The U.S.</p>
       </footer>
     </div>
+    <script src="./script.js"></script>
   </body>
 </html>

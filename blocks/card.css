@@ -17,9 +17,17 @@
   border-radius: 10px;
 }
 
+.card__title-container {
+  display: flex;
+  padding: 25px 0 30px 0;
+  justify-content: space-between;
+  align-items: flex-end;
+  max-width: 246px;
+  margin: 0 auto;
+}
+
 .card__title {
   margin: 0;
-  font-family: "Inter", "Arial", sans-serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
@@ -27,7 +35,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  padding: 25px 20px 30px 20px;
+  padding: 0;
+}
+
+.card__button {
+  padding: 0;
+  background-color: #ffffff;
+  border: none;
 }
 
 .card__image {
