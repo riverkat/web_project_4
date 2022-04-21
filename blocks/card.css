@@ -31,3 +31,14 @@
 .card__image {
   border-radius: 10px 10px 0px 0px;
 }
+
+@media screen and (max-width: 1000px) {
+  .card__container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .card {
+    object-fit: fill;
+  }
+}
