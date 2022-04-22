@@ -14,7 +14,7 @@
   padding-right: 18px;
 }
 
-.profile__occupation {
+.profile__bio {
   font-weight: 400;
   font-size: 18px;
   line-height: 1;
@@ -62,7 +62,7 @@
 .profile__info {
   display: flex;
   flex-wrap: wrap;
-  max-width: 415px;
+  min-width: 415px;
   align-items: center;
   padding-right: 165px;
 }
