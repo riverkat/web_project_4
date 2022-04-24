@@ -24,28 +24,14 @@
             alt="user avatar photo"
           />
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
-            <button class="profile__edit-button">
-              <img
-                class="profile__edit-button-img"
-                src="./images/edit_icon.svg"
-                alt="edit button image"
-              />
-            </button>
-            <p class="profile__bio">Explorer</p>
+            <h1 class="profile__name" id="profileName">Jacques Cousteau</h1>
+            <button class="profile__edit-button"></button>
+            <p class="profile__bio" id="profileBio">Explorer</p>
           </div>
-          <button class="profile__add-button">
-            <img
-              class="profile__add-button-img"
-              src="./images/add_icon.svg"
-              alt="add button image"
-            />
-          </button>
+          <button class="profile__add-button"></button>
           <div class="popup__container">
-            <div class="popup popup_open">
-              <button class="popup__close-button">
-                <img class="popup__close-image" src="./images/close_icon.svg" />
-              </button>
+            <div class="popup">
+              <button class="popup__close-button"></button>
               <form class="popup__form">
                 <h2 class="popup__title">Edit profile</h2>
                 <fieldset class="popup__fieldset">
@@ -65,7 +51,7 @@
                   />
                 </fieldset>
                 <fieldset class="popup__fieldset">
-                  <button class="popup__button">Save</button>
+                  <button class="popup__button" type="submit">Save</button>
                 </fieldset>
               </form>
             </div>
@@ -178,6 +164,6 @@
         <p class="footer__paragraph">© 2021 Around The U.S.</p>
       </footer>
     </div>
-    <script src="./script.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
