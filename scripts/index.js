@@ -1,20 +1,45 @@
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+];
+
+//Wrappers
 const popupWindow = document.querySelector(".popup");
 const editForm = document.querySelector(".popup__form");
+const cardWrap = document.querySelector(".elements__container");
 
+//Buttons, elements
 const editButton = document.querySelector(".profile__edit-button");
 const closeButton = document.querySelector(".popup__close-button");
-
-const profileName = document.querySelector(".profile__name");
-const profileBio = document.querySelector(".profile__bio");
-
-const inputName = editForm.querySelector(".popup__input_type_name");
-const inputBio = editForm.querySelector(".popup__input_type_bio");
-
 const likeButton = document.querySelectorAll(".card__button");
 
-function toggleLikeButton() {
-  likeButton.classList.toggle("card__button_active");
-}
+//Form data
+const profileName = document.querySelector(".profile__name");
+const profileBio = document.querySelector(".profile__bio");
+const inputName = editForm.querySelector(".popup__input_type_name");
+const inputBio = editForm.querySelector(".popup__input_type_bio");
 
 function togglePopupVisibility() {
   if (!popupWindow.classList.contains("popup_open")) {
@@ -38,3 +63,30 @@ editForm.addEventListener("submit", handleProfileFormSubmit);
 editButton.addEventListener("click", togglePopupVisibility);
 closeButton.addEventListener("click", togglePopupVisibility);
 likeButton.addEventListener("click", toggleLikeButton);
+
+const cardTemplate = document
+  .querySelector("#card__template")
+  .content.querySelector(".card");
+
+const getCardElement = (data) => {
+  const cardElement = cardTemplate.cloneNode(true);
+  cardElement.querySelector(
+    ".card__image"
+  ).style.backgroundImage = `url('${data.link}')`;
+  cardElement.querySelector(".card__title").textContent = date.name;
+
+  return cardElement;
+};
+
+const renderCard = (data, wrapper) => {
+  const newCard = getCardElement(data);
+  wrapper.prepend(newCard);
+};
+
+initialCards.forEach((data) => {
+  renderCard(data, cardWrap);
+});
+
+function toggleLikeButton() {
+  likeButton.classList.toggle("card__button_active");
+}
