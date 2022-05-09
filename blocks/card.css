@@ -4,6 +4,7 @@
   box-sizing: border-box;
   border: none;
   border-radius: 10px;
+  position: relative;
 }
 
 .card__title-container {
@@ -27,6 +28,24 @@
   padding: 0;
 }
 
+.card__delete-button {
+  padding: 0;
+  margin: 0;
+  background: transparent url(../images/trash_icon.svg);
+  background-repeat: no-repeat;
+  border: none;
+  min-width: 18px;
+  min-height: 19px;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.card__delete-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 .card__button {
   padding: 0;
   margin: 0;
@@ -37,12 +56,17 @@
   min-height: 19px;
 }
 
-/*.card__button_active {
+.card__button_active {
   background: transparent url(../images/heart_icon_active.svg);
   background-repeat: no-repeat;
-}*/
+}
 
 .card__button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.card__button_active:hover {
   cursor: pointer;
   opacity: 0.5;
 }
