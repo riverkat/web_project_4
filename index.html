@@ -32,128 +32,7 @@
         </section>
 
         <section class="elements">
-          <div class="elements__container">
-            <!--<article class="card">
-              <button
-                class="card__delete-button"
-                aria-label="delete"
-                type="button"
-              ></button>
-              <img
-                class="card__image"
-                src="./images/yosemite_valley.jpg"
-                alt="image of river in Yosemite Valley"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button
-                  class="card__button"
-                  aria-label="like"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <button
-                class="card__delete-button"
-                aria-label="delete"
-                type="button"
-              ></button>
-              <img
-                class="card__image"
-                src="./images/lake_louise.jpg"
-                alt="image of mountains near Lake Louise"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Lake Louise</h2>
-                <button
-                  class="card__button"
-                  aria-label="like"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <button
-                class="card__delete-button"
-                aria-label="delete"
-                type="button"
-              ></button>
-              <img
-                class="card__image"
-                src="./images/bald_mountains.jpg"
-                alt="image of sunset over Bald Mountains"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button
-                  class="card__button"
-                  aria-label="like"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <button
-                class="card__delete-button"
-                aria-label="delete"
-                type="button"
-              ></button>
-              <img
-                class="card__image"
-                src="./images/latemar.jpg"
-                alt="Night sky over mountains"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Latemar</h2>
-                <button
-                  class="card__button"
-                  aria-label="like"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <button
-                class="card__delete-button"
-                aria-label="delete"
-                type="button"
-              ></button>
-              <img
-                class="card__image"
-                src="./images/vanoise_nat_park.jpg"
-                alt="lakesid view of Vanoise National Park"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button
-                  class="card__button"
-                  aria-label="like"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-            <article class="card">
-              <button
-                class="card__delete-button"
-                aria-label="delete"
-                type="button"
-              ></button>
-              <img
-                class="card__image"
-                src="./images/lago_di_braies.jpg"
-                alt="image of boats docked at pier on Lago di Braies"
-              />
-              <div class="card__title-container">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button
-                  class="card__button"
-                  aria-label="like"
-                  type="button"
-                ></button>
-              </div>
-            </article>-->
-          </div>
+          <ul class="elements__container"></ul>
         </section>
       </main>
 
@@ -161,6 +40,7 @@
         <p class="footer__paragraph">© 2021 Around The U.S.</p>
       </footer>
     </div>
+
     <div class="popup">
       <div class="popup__container">
         <button class="popup__close-button" type="button"></button>
@@ -188,20 +68,22 @@
         </form>
       </div>
     </div>
+
     <template id="card__template">
-      <article class="card">
+      <li class="card elements__item">
         <button
           class="card__delete-button"
           aria-label="delete"
           type="button"
         ></button>
-        <div class="card__image" style="" alt=""></div>
+        <div class="card__image" style=""></div>
         <div class="card__title-container">
           <h2 class="card__title"></h2>
           <button class="card__button" aria-label="like" type="button"></button>
         </div>
-      </article>
+      </li>
     </template>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>

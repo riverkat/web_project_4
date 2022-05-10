@@ -25,6 +25,10 @@ const initialCards = [
   },
 ];
 
+const cardTemplate = document
+  .querySelector("#card__template")
+  .content.querySelector(".elements__item");
+
 //Wrappers
 const popupWindow = document.querySelector(".popup");
 const editForm = document.querySelector(".popup__form");
@@ -62,18 +66,14 @@ function handleProfileFormSubmit(evt) {
 editForm.addEventListener("submit", handleProfileFormSubmit);
 editButton.addEventListener("click", togglePopupVisibility);
 closeButton.addEventListener("click", togglePopupVisibility);
-likeButton.addEventListener("click", toggleLikeButton);
-
-const cardTemplate = document
-  .querySelector("#card__template")
-  .content.querySelector(".card");
+//likeButton.addEventListener("click", toggleLikeButton);
 
 const getCardElement = (data) => {
   const cardElement = cardTemplate.cloneNode(true);
+  cardElement.querySelector(".card__title").textContent = data.name;
   cardElement.querySelector(
     ".card__image"
   ).style.backgroundImage = `url('${data.link}')`;
-  cardElement.querySelector(".card__title").textContent = date.name;
 
   return cardElement;
 };
@@ -87,6 +87,6 @@ initialCards.forEach((data) => {
   renderCard(data, cardWrap);
 });
 
-function toggleLikeButton() {
-  likeButton.classList.toggle("card__button_active");
-}
+//function toggleLikeButton() {
+//likeButton.classList.toggle("card__button_active");
+//}
