@@ -41,11 +41,14 @@
       </footer>
     </div>
 
-    <div class="popup">
+    <div class="popup edit-popup">
       <div class="popup__container">
-        <button class="popup__close-button" type="button"></button>
+        <button
+          class="popup__close-button edit-popup__close-button"
+          type="button"
+        ></button>
         <h2 class="popup__title">Edit profile</h2>
-        <form class="popup__form" name="form">
+        <form class="popup__form popup__edit-form" name="form">
           <fieldset class="popup__fieldset">
             <input
               class="popup__input popup__input_type_name"
@@ -64,6 +67,37 @@
           </fieldset>
           <fieldset class="popup__fieldset">
             <button class="popup__button" type="submit">Save</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup create-popup">
+      <div class="popup__container">
+        <button
+          class="popup__close-button create-popup__close-button"
+          type="button"
+        ></button>
+        <h2 class="popup__title">New Place</h2>
+        <form class="popup__form popup__create-form" name="form">
+          <fieldset class="popup__fieldset">
+            <input
+              class="popup__input popup__input_type_title"
+              type="text"
+              placeholder="Title"
+              name="title"
+            />
+          </fieldset>
+          <fieldset class="popup__fieldset">
+            <input
+              class="popup__input popup__input_type_link"
+              type="text"
+              placeholder="Image link"
+              name="link"
+            />
+          </fieldset>
+          <fieldset class="popup__fieldset">
+            <button class="popup__button" type="submit">Create</button>
           </fieldset>
         </form>
       </div>

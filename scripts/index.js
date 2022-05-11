@@ -30,13 +30,17 @@ const cardTemplate = document
   .content.querySelector(".elements__item");
 
 //Wrappers
-const popupWindow = document.querySelector(".popup");
-const editForm = document.querySelector(".popup__form");
+const editPopupWindow = document.querySelector(".edit-popup");
+const createPopupWindow = document.querySelector(".create-popup");
+const editForm = document.querySelector(".popup__edit-form");
+const createForm = document.querySelector(".popup__create-form");
 const cardWrap = document.querySelector(".elements__container");
 
 //Buttons, elements
 const editButton = document.querySelector(".profile__edit-button");
-const closeButton = document.querySelector(".popup__close-button");
+const createButton = document.querySelector(".profile__add-button");
+const closeEditButton = document.querySelector(".edit-popup__close-button");
+const closeCreateButton = document.querySelector(".create-popup__close-button");
 const likeButton = document.querySelectorAll(".card__button");
 
 //Form data
@@ -44,8 +48,10 @@ const profileName = document.querySelector(".profile__name");
 const profileBio = document.querySelector(".profile__bio");
 const inputName = editForm.querySelector(".popup__input_type_name");
 const inputBio = editForm.querySelector(".popup__input_type_bio");
+const inputTitle = createForm.querySelector(".popup__input_type_title");
+const inputLink = createForm.querySelector(".popup__input_type_link");
 
-function togglePopupVisibility() {
+function togglePopupVisibility(popupWindow) {
   if (!popupWindow.classList.contains("popup_open")) {
     inputName.value = profileName.textContent;
     inputBio.value = profileBio.textContent;
@@ -54,18 +60,44 @@ function togglePopupVisibility() {
   popupWindow.classList.toggle("popup_open");
 }
 
-function handleProfileFormSubmit(evt) {
+function handleEditFormSubmit(evt) {
   evt.preventDefault();
 
   profileName.textContent = inputName.value;
   profileBio.textContent = inputBio.value;
 
-  togglePopupVisibility();
+  togglePopupVisibility(editPopupWindow);
 }
 
-editForm.addEventListener("submit", handleProfileFormSubmit);
-editButton.addEventListener("click", togglePopupVisibility);
-closeButton.addEventListener("click", togglePopupVisibility);
+function handleCreateFormSubmit(evt) {
+  evt.preventDefault();
+
+  renderCard(
+    {
+      name: inputTitle.value,
+      link: inputLink.value,
+    },
+    cardWrap
+  );
+
+  togglePopupVisibility(createPopupWindow);
+}
+
+editForm.addEventListener("submit", handleEditFormSubmit);
+createForm.addEventListener("submit", handleCreateFormSubmit);
+editButton.addEventListener("click", () => {
+  togglePopupVisibility(editPopupWindow);
+});
+closeEditButton.addEventListener("click", () => {
+  togglePopupVisibility(editPopupWindow);
+});
+createButton.addEventListener("click", () => {
+  togglePopupVisibility(createPopupWindow);
+});
+closeCreateButton.addEventListener("click", () => {
+  togglePopupVisibility(createPopupWindow);
+});
+
 //likeButton.addEventListener("click", toggleLikeButton);
 
 const getCardElement = (data) => {
