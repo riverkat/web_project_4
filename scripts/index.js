@@ -41,7 +41,6 @@ const editButton = document.querySelector(".profile__edit-button");
 const createButton = document.querySelector(".profile__add-button");
 const closeEditButton = document.querySelector(".edit-popup__close-button");
 const closeCreateButton = document.querySelector(".create-popup__close-button");
-const likeButton = document.querySelectorAll(".card__button");
 
 //Form data
 const profileName = document.querySelector(".profile__name");
@@ -98,17 +97,26 @@ closeCreateButton.addEventListener("click", () => {
   togglePopupVisibility(createPopupWindow);
 });
 
-//likeButton.addEventListener("click", toggleLikeButton);
-
-const getCardElement = (data) => {
+function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+
   cardElement.querySelector(".card__title").textContent = data.name;
   cardElement.querySelector(
     ".card__image"
   ).style.backgroundImage = `url('${data.link}')`;
 
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
   return cardElement;
-};
+}
 
 const renderCard = (data, wrapper) => {
   const newCard = getCardElement(data);
@@ -118,7 +126,3 @@ const renderCard = (data, wrapper) => {
 initialCards.forEach((data) => {
   renderCard(data, cardWrap);
 });
-
-//function toggleLikeButton() {
-//likeButton.classList.toggle("card__button_active");
-//}

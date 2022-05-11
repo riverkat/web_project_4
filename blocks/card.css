@@ -46,7 +46,7 @@
   cursor: pointer;
 }
 
-.card__button {
+.card__like-button {
   padding: 0;
   margin: 0;
   background: transparent url(../images/heart_icon_disabled.svg);
@@ -54,19 +54,15 @@
   border: none;
   min-width: 21px;
   min-height: 19px;
+  transition: 0.2s ease-in;
 }
 
-.card__button_active {
+.card__like-button_active {
   background: transparent url(../images/heart_icon_active.svg);
   background-repeat: no-repeat;
 }
 
-.card__button:hover {
-  cursor: pointer;
-  opacity: 0.5;
-}
-
-.card__button_active:hover {
+.card__like-button:hover {
   cursor: pointer;
   opacity: 0.5;
 }
