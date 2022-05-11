@@ -106,6 +106,20 @@
   opacity: 0.6;
 }
 
+.card-popup__container {
+  max-width: 75vw;
+  max-height: 7vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.card-popup__subtitle {
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #ffffff;
+}
+
 @media screen and (max-width: 470px) {
   .popup__form {
     padding: 25px 22px 0 22px;

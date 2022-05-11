@@ -35,12 +35,14 @@ const createPopupWindow = document.querySelector(".create-popup");
 const editForm = document.querySelector(".popup__edit-form");
 const createForm = document.querySelector(".popup__create-form");
 const cardWrap = document.querySelector(".elements__container");
+const cardPopupWindow = document.querySelector(".card-popup");
 
 //Buttons, elements
 const editButton = document.querySelector(".profile__edit-button");
 const createButton = document.querySelector(".profile__add-button");
 const closeEditButton = document.querySelector(".edit-popup__close-button");
 const closeCreateButton = document.querySelector(".create-popup__close-button");
+const cardPopupClose = document.querySelector(".card-popup__close-button");
 
 //Form data
 const profileName = document.querySelector(".profile__name");
@@ -115,8 +117,24 @@ function getCardElement(data) {
     cardElement.remove();
   });
 
+  cardElement.querySelector(".card__image").addEventListener("click", () => {
+    togglePopupVisibility(cardPopupWindow);
+  });
+
   return cardElement;
 }
+
+function getCardPopup(data) {
+  const cardPopupImage = document.querySelector(".card-popup__container");
+  const cardPopupText = document.querySelector(".card-popup__subtitle");
+
+  cardPopupText.textContent = data.name;
+  cardPopupImage.style.backgroundImage = `url('${data.link})`;
+}
+
+cardPopupClose.addEventListener("click", () => {
+  togglePopupVisibility(cardPopupWindow);
+});
 
 const renderCard = (data, wrapper) => {
   const newCard = getCardElement(data);
