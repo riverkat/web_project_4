@@ -73,6 +73,8 @@
 
 .card__image {
   border-radius: 10px 10px 0px 0px;
-  max-width: 282px;
-  max-height: 282px;
+  min-width: 282px;
+  min-height: 282px;
+  background-position: center;
+  background-size: cover;
 }
