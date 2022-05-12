@@ -32,10 +32,10 @@ const cardTemplate = document
 //Wrappers
 const editPopupWindow = document.querySelector(".edit-popup");
 const createPopupWindow = document.querySelector(".create-popup");
+const cardPopupWindow = document.querySelector(".card-popup");
 const editForm = document.querySelector(".popup__edit-form");
 const createForm = document.querySelector(".popup__create-form");
 const cardWrap = document.querySelector(".elements__container");
-const cardPopupWindow = document.querySelector(".card-popup");
 
 //Buttons, elements
 const editButton = document.querySelector(".profile__edit-button");
@@ -118,18 +118,17 @@ function getCardElement(data) {
   });
 
   cardElement.querySelector(".card__image").addEventListener("click", () => {
+    const cardPopupImage = cardPopupWindow.querySelector(".card-popup__image");
+    const cardPopupCaption = cardPopupWindow.querySelector(
+      ".card-popup__subtitle"
+    );
+    cardPopupCaption.textContent = data.name;
+    cardPopupImage.src = data.link;
+
     togglePopupVisibility(cardPopupWindow);
   });
 
   return cardElement;
-}
-
-function getCardPopup(data) {
-  const cardPopupImage = document.querySelector(".card-popup__container");
-  const cardPopupText = document.querySelector(".card-popup__subtitle");
-
-  cardPopupText.textContent = data.name;
-  cardPopupImage.style.backgroundImage = `url('${data.link})`;
 }
 
 cardPopupClose.addEventListener("click", () => {
