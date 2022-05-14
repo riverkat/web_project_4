@@ -61,10 +61,8 @@ function closePopup(popupWindow) {
 }
 
 function fillProfileForm() {
-  if (editPopupWindow.classList.contains("popup_open")) {
-    inputName.value = profileName.textContent;
-    inputBio.value = profileBio.textContent;
-  }
+  inputName.value = profileName.textContent;
+  inputBio.value = profileBio.textContent;
 }
 
 function handleEditFormSubmit(evt) {
@@ -93,6 +91,7 @@ function handleCreateFormSubmit(evt) {
 editForm.addEventListener("submit", handleEditFormSubmit);
 createForm.addEventListener("submit", handleCreateFormSubmit);
 editButton.addEventListener("click", () => {
+  fillProfileForm();
   openPopup(editPopupWindow);
 });
 closeEditButton.addEventListener("click", () => {
