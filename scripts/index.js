@@ -52,12 +52,26 @@ const inputBio = editForm.querySelector(".popup__input_type_bio");
 const inputTitle = createForm.querySelector(".popup__input_type_title");
 const inputLink = createForm.querySelector(".popup__input_type_link");
 
+const isEscEvent = (evt, action) => {
+  const activePopup = document.querySelector(".popup_open");
+  if (evt.key === "Escape") {
+    action(activePopup);
+  }
+};
+
+function handleEscEvent(evt) {
+  evt.preventDefault();
+  isEscEvent(evt, closePopup);
+}
+
 function openPopup(popupWindow) {
   popupWindow.classList.add("popup_open");
+  document.addEventListener("keydown", handleEscEvent);
 }
 
 function closePopup(popupWindow) {
   popupWindow.classList.remove("popup_open");
+  document.addEventListener("keydown", handleEscEvent);
 }
 
 function fillProfileForm() {
@@ -104,6 +118,24 @@ closeCreateButton.addEventListener("click", () => {
   closePopup(createPopupWindow);
 });
 
+editPopupWindow.addEventListener("mousedown", (evt) => {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__close")
+  ) {
+    closePopup(editPopupWindow);
+  }
+});
+
+createPopupWindow.addEventListener("mousedown", (evt) => {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__close")
+  ) {
+    closePopup(createPopupWindow);
+  }
+});
+
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
@@ -139,6 +171,15 @@ function getCardElement(data) {
 
 cardPopupClose.addEventListener("click", () => {
   closePopup(cardPopupWindow);
+});
+
+cardPopupWindow.addEventListener("mousedown", (evt) => {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__close")
+  ) {
+    closePopup(cardPopupWindow);
+  }
 });
 
 const renderCard = (data, wrapper) => {
