@@ -103,6 +103,13 @@
   cursor: pointer;
 }
 
+.popup__button_disabled {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  opacity: 0.2;
+}
+
 .popup__close-button {
   position: relative;
   top: -45px;
