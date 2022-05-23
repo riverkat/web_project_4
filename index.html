@@ -48,24 +48,36 @@
           type="button"
         ></button>
         <h2 class="popup__title">Edit profile</h2>
-        <form class="popup__form popup__edit-form" name="form">
+        <form class="popup__form popup__edit-form" name="form" novalidate>
           <fieldset class="popup__fieldset">
-            <input
-              class="popup__input popup__input_type_name"
-              type="text"
-              placeholder="Name"
-              name="name"
-              required
-            />
+            <label class="popup__field">
+              <input
+                class="popup__input popup__input_type_name"
+                type="text"
+                placeholder="Name"
+                name="name"
+                id="name-input"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="popup__error" id="name-input-error"></span>
+            </label>
           </fieldset>
           <fieldset class="popup__fieldset">
-            <input
-              class="popup__input popup__input_type_bio"
-              type="text"
-              placeholder="About me"
-              name="bio"
-              required
-            />
+            <label class="popup__field">
+              <input
+                class="popup__input popup__input_type_bio"
+                type="text"
+                placeholder="About me"
+                name="bio"
+                id="bio-input"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="popup__error" id="bio-input-error"></span>
+            </label>
           </fieldset>
           <fieldset class="popup__fieldset">
             <button class="popup__button" type="submit">Save</button>
@@ -81,25 +93,37 @@
           type="button"
         ></button>
         <h2 class="popup__title">New Place</h2>
-        <form class="popup__form popup__create-form" name="form">
+        <form class="popup__form popup__create-form" name="form" novalidate>
           <fieldset class="popup__fieldset">
-            <input
-              class="popup__input popup__input_type_title"
-              type="text"
-              placeholder="Title"
-              name="title"
-              required
-            />
+            <label class="popup__field">
+              <input
+                class="popup__input popup__input_type_title"
+                type="text"
+                placeholder="Title"
+                name="title"
+                id="title-input"
+                minlength="1"
+                maxlength="30"
+                required
+              />
+              <span class="popup__error" id="title-input-error"></span>
+            </label>
           </fieldset>
           <fieldset class="popup__fieldset">
-            <input
-              class="popup__input popup__input_type_link"
-              type="text"
-              placeholder="Image link"
-              name="link"
-              required
-            />
+            <label class="popup__field">
+              <input
+                class="popup__input popup__input_type_link"
+                type="text"
+                placeholder="Image link"
+                name="link"
+                id="link-input"
+                type="URL"
+                required
+              />
+              <span class="popup__error" id="link-input-error"></span>
+            </label>
           </fieldset>
+
           <fieldset class="popup__fieldset">
             <button class="popup__button" type="submit">Create</button>
           </fieldset>
@@ -138,5 +162,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
