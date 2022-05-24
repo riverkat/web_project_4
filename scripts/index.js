@@ -60,7 +60,6 @@ const isEscEvent = (evt, action) => {
 };
 
 function handleEscEvent(evt) {
-  evt.preventDefault();
   isEscEvent(evt, closePopup);
 }
 
