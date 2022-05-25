@@ -52,25 +52,33 @@ const inputBio = editForm.querySelector(".popup__input_type_bio");
 const inputTitle = createForm.querySelector(".popup__input_type_title");
 const inputLink = createForm.querySelector(".popup__input_type_link");
 
-const isEscEvent = (evt, action) => {
-  const activePopup = document.querySelector(".popup_open");
-  if (evt.key === "Escape") {
-    action(activePopup);
-  }
-};
-
 function handleEscEvent(evt) {
-  isEscEvent(evt, closePopup);
+  if (evt.key === "Escape") {
+    const activePopup = document.querySelector(".popup_open");
+    closePopup(activePopup);
+  }
+}
+
+function closePopupOnRemoteClick(evt) {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__close-button")
+  ) {
+    const activePopup = document.querySelector(".popup_open");
+    closePopup(activePopup);
+  }
 }
 
 function openPopup(popupWindow) {
   popupWindow.classList.add("popup_open");
   document.addEventListener("keydown", handleEscEvent);
+  document.addEventListener("mousedown", closePopupOnRemoteClick);
 }
 
 function closePopup(popupWindow) {
   popupWindow.classList.remove("popup_open");
-  document.addEventListener("keydown", handleEscEvent);
+  document.removeEventListener("keydown", handleEscEvent);
+  document.removeEventListener("mousedown", closePopupOnRemoteClick);
 }
 
 function fillProfileForm() {
@@ -103,36 +111,14 @@ function handleCreateFormSubmit(evt) {
 
 editForm.addEventListener("submit", handleEditFormSubmit);
 createForm.addEventListener("submit", handleCreateFormSubmit);
+
 editButton.addEventListener("click", () => {
   fillProfileForm();
   openPopup(editPopupWindow);
 });
-closeEditButton.addEventListener("click", () => {
-  closePopup(editPopupWindow);
-});
+
 createButton.addEventListener("click", () => {
   openPopup(createPopupWindow);
-});
-closeCreateButton.addEventListener("click", () => {
-  closePopup(createPopupWindow);
-});
-
-editPopupWindow.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup__close")
-  ) {
-    closePopup(editPopupWindow);
-  }
-});
-
-createPopupWindow.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup__close")
-  ) {
-    closePopup(createPopupWindow);
-  }
 });
 
 function getCardElement(data) {
@@ -145,9 +131,13 @@ function getCardElement(data) {
   cardTitle.textContent = data.name;
   cardImage.style.backgroundImage = `url('${data.link}')`;
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+  function toggleLikeButton(evt) {
+    if (evt.target === likeButton) {
+      evt.target.classList.toggle("card__like-button_active");
+    }
+  }
+
+  likeButton.addEventListener("click", toggleLikeButton);
 
   deleteButton.addEventListener("click", () => {
     cardElement.remove();
@@ -160,26 +150,13 @@ function getCardElement(data) {
     );
     cardPopupCaption.textContent = data.name;
     cardPopupImage.src = data.link;
-    cardPopupImage.setAttribute("alt", "Photo of " + data.name);
+    cardPopupImage.alt = "Photo of " + data.name;
 
     openPopup(cardPopupWindow);
   });
 
   return cardElement;
 }
-
-cardPopupClose.addEventListener("click", () => {
-  closePopup(cardPopupWindow);
-});
-
-cardPopupWindow.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup__close")
-  ) {
-    closePopup(cardPopupWindow);
-  }
-});
 
 const renderCard = (data, wrapper) => {
   const newCard = getCardElement(data);
