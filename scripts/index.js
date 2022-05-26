@@ -79,6 +79,15 @@ function closePopup(popupWindow) {
   popupWindow.classList.remove("popup_open");
   document.removeEventListener("keydown", handleEscEvent);
   document.removeEventListener("mousedown", closePopupOnRemoteClick);
+  const popupForm = popupWindow.querySelector(".popup__form");
+  if (popupForm) {
+    popupForm.reset();
+    popupWindow
+      .querySelectorAll(validationConfig.inputSelector)
+      .forEach((input) => {
+        hideInputError(popupForm, input, validationConfig);
+      });
+  }
 }
 
 function fillProfileForm() {
@@ -91,7 +100,6 @@ function handleEditFormSubmit(evt) {
 
   profileName.textContent = inputName.value;
   profileBio.textContent = inputBio.value;
-
   closePopup(editPopupWindow);
 }
 
