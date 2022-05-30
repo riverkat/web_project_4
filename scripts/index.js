@@ -33,8 +33,8 @@ const cardTemplate = document
 const editPopupWindow = document.querySelector(".edit-popup");
 const createPopupWindow = document.querySelector(".create-popup");
 const cardPopupWindow = document.querySelector(".card-popup");
-const editForm = document.querySelector(".popup__edit-form");
-const createForm = document.querySelector(".popup__create-form");
+const editForm = document.forms.edit;
+const createForm = document.forms.create;
 const cardWrap = document.querySelector(".elements__container");
 
 //Buttons, elements
@@ -47,10 +47,10 @@ const cardPopupClose = document.querySelector(".card-popup__close-button");
 //Form data
 const profileName = document.querySelector(".profile__name");
 const profileBio = document.querySelector(".profile__bio");
-const inputName = editForm.querySelector(".popup__input_type_name");
-const inputBio = editForm.querySelector(".popup__input_type_bio");
-const inputTitle = createForm.querySelector(".popup__input_type_title");
-const inputLink = createForm.querySelector(".popup__input_type_link");
+const inputName = editForm.elements.name;
+const inputBio = editForm.elements.bio;
+const inputTitle = createForm.elements.title;
+const inputLink = createForm.elements.link;
 
 function handleEscEvent(evt) {
   if (evt.key === "Escape") {
@@ -79,15 +79,14 @@ function closePopup(popupWindow) {
   popupWindow.classList.remove("popup_open");
   document.removeEventListener("keydown", handleEscEvent);
   document.removeEventListener("mousedown", closePopupOnRemoteClick);
-  const popupForm = popupWindow.querySelector(".popup__form");
-  if (popupForm) {
-    popupForm.reset();
-    popupWindow
-      .querySelectorAll(validationConfig.inputSelector)
-      .forEach((input) => {
-        hideInputError(popupForm, input, validationConfig);
-      });
-  }
+}
+
+function resetPopupForm(popupForm) {
+  popupForm.reset();
+  const submitButton = popupForm.querySelector(
+    validationConfig.submitButtonSelector
+  );
+  toggleButtonState(submitButton, validationConfig.inactiveButtonClass);
 }
 
 function fillProfileForm() {
@@ -101,6 +100,8 @@ function handleEditFormSubmit(evt) {
   profileName.textContent = inputName.value;
   profileBio.textContent = inputBio.value;
   closePopup(editPopupWindow);
+  const popupForm = editPopupWindow.querySelector(".popup__form");
+  resetPopupForm(popupForm);
 }
 
 function handleCreateFormSubmit(evt) {
@@ -115,9 +116,12 @@ function handleCreateFormSubmit(evt) {
   );
 
   closePopup(createPopupWindow);
+  const popupForm = createPopupWindow.querySelector(".popup__form");
+  resetPopupForm(popupForm);
 }
 
 editForm.addEventListener("submit", handleEditFormSubmit);
+
 createForm.addEventListener("submit", handleCreateFormSubmit);
 
 editButton.addEventListener("click", () => {
