@@ -1,4 +1,4 @@
-const initialCards = [
+/*const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
@@ -27,22 +27,22 @@ const initialCards = [
 
 const cardTemplate = document
   .querySelector("#card__template")
-  .content.querySelector(".elements__item");
+  .content.querySelector(".elements__item");*/
 
 //Wrappers
 const editPopupWindow = document.querySelector(".edit-popup");
 const createPopupWindow = document.querySelector(".create-popup");
-const cardPopupWindow = document.querySelector(".card-popup");
+//const cardPopupWindow = document.querySelector(".card-popup");
 const editForm = document.forms.edit;
 const createForm = document.forms.create;
-const cardWrap = document.querySelector(".elements__container");
+//const cardWrap = document.querySelector(".elements__container");
 
 //Buttons, elements
 const editButton = document.querySelector(".profile__edit-button");
 const createButton = document.querySelector(".profile__add-button");
 const closeEditButton = document.querySelector(".edit-popup__close-button");
 const closeCreateButton = document.querySelector(".create-popup__close-button");
-const cardPopupClose = document.querySelector(".card-popup__close-button");
+//const cardPopupClose = document.querySelector(".card-popup__close-button");
 
 //Form data
 const profileName = document.querySelector(".profile__name");
@@ -133,7 +133,7 @@ createButton.addEventListener("click", () => {
   openPopup(createPopupWindow);
 });
 
-function getCardElement(data) {
+/*function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
@@ -177,4 +177,6 @@ const renderCard = (data, wrapper) => {
 
 initialCards.forEach((data) => {
   renderCard(data, cardWrap);
-});
+});*/
+
+export { openPopup, handleEscEvent, closePopup, closePopupOnRemoteClick };
