@@ -49,7 +49,7 @@ export class Card {
 
   _getTemplate() {
     const cardElement = document
-      .querySelector("#card__template")
+      .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
 
@@ -100,9 +100,9 @@ export class Card {
   }
 }
 
-initialCards.forEach((item) => {
-  const card = new Card(item, "#card__template");
+initialCards.forEach((data) => {
+  const card = new Card(data, "#card__template");
   const cardElement = card.renderCard();
 
-  document.querySelector(cardWrap).prepend(cardElement);
+  document.querySelector(".elements__container").prepend(cardElement);
 });
