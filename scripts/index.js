@@ -1,3 +1,5 @@
+//import { validationConfig } from "./validate";
+//import { renderCard } from "./card";
 /*const initialCards = [
   {
     name: "Yosemite Valley",

@@ -69,34 +69,42 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._element.addEventListener("click", () => {
-      _handleOpenPopup();
-    });
+    this._element
+      .querySelector(".card__image")
+      .addEventListener("click", () => {
+        this._handleOpenPopup();
+      });
 
-    likeButton.addEventListener("click", () => {
-      this._toggleLikeButton();
-    });
+    this._element
+      .querySelector(".card__like-button")
+      .addEventListener("click", () => {
+        this._toggleLikeButton();
+      });
 
-    deleteButton.addEventListener("click", () => {
+    /*deleteButton.addEventListener("click", () => {
       this.cardElement.remove();
-    });
+    });*/
 
     cardPopupClose.addEventListener("click", () => {
-      closePopup();
+      this._handleClosePopup();
     });
   }
 
-  _toggleLikeButton(evt) {
-    if (evt.target === likeButton) {
-      evt.target.classList.toggle("card__like-button_active");
-    }
+  _toggleLikeButton() {
+    this._element
+      .querySelector(".card__like-button")
+      .classList.toggle("card__like-button_active");
   }
 
   _handleOpenPopup() {
     cardPopupCaption.textContent = this._title;
     cardPopupImage.src = this._image;
     cardPopupImage.alt = "Photo of " + this._title;
-    openPopup();
+    cardPopupWindow.classList.add("popup_open");
+  }
+
+  _handleClosePopup() {
+    cardPopupWindow.classList.remove("popup_open");
   }
 }
 
