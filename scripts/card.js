@@ -1,49 +1,21 @@
 import {
-  openPopup,
   handleEscEvent,
-  closePopup,
   closePopupOnRemoteClick,
-} from "./index.js";
+  closePopup,
+  openPopup,
+} from "./utils.js";
 
-const initialCards = [
-  {
-    title: "Yosemite Valley",
-    image: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    title: "Lake Louise",
-    image: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    title: "Bald Mountains",
-    image: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    title: "Latemar",
-    image: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    title: "Vanoise National Park",
-    image: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    title: "Lago di Braies",
-    image: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
-
-const likeButton = document.querySelector(".card__like-button");
-const deleteButton = document.querySelector(".card__delete-button");
+//Constants
 const cardPopupWindow = document.querySelector(".card-popup");
-const cardPopupImage = cardPopupWindow.querySelector(".card-popup__image");
-const cardPopupCaption = cardPopupWindow.querySelector(".card-popup__subtitle");
+const cardPopupImage = document.querySelector(".card-popup__image");
+const cardPopupCaption = document.querySelector(".card-popup__subtitle");
 const cardPopupClose = document.querySelector(".card-popup__close-button");
-const cardWrap = document.querySelector(".elements__container");
 
-export class Card {
+class Card {
   constructor(data, cardSelector) {
-    this._title = data.title;
-    this._image = data.image;
+    this._name = data.name;
+    this._link = data.link;
+
     this._cardSelector = cardSelector;
   }
 
@@ -56,34 +28,21 @@ export class Card {
     return cardElement;
   }
 
-  renderCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-
-    this._element.querySelector(
-      ".card__image"
-    ).style.backgroundImage = `url('${this._image}')`;
-    this._element.querySelector(".card__title").textContent = this._title;
-
-    return this._element;
-  }
-
   _setEventListeners() {
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this._handleOpenPopup();
-      });
+    const cardPopupImage = this._element.querySelector(".card__image");
+    cardPopupImage.addEventListener("click", () => {
+      this._getCardPopup();
+    });
 
-    this._element
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => {
-        this._toggleLikeButton();
-      });
+    const likeButton = this._element.querySelector(".card__like-button");
+    likeButton.addEventListener("click", () => {
+      this._toggleLikeButton();
+    });
 
-    /*deleteButton.addEventListener("click", () => {
-      this.cardElement.remove();
-    });*/
+    const deleteButton = this._element.querySelector(".card__delete-button");
+    deleteButton.addEventListener("click", () => {
+      this._element.remove();
+    });
 
     cardPopupClose.addEventListener("click", () => {
       this._handleClosePopup();
@@ -96,21 +55,29 @@ export class Card {
       .classList.toggle("card__like-button_active");
   }
 
-  _handleOpenPopup() {
-    cardPopupCaption.textContent = this._title;
-    cardPopupImage.src = this._image;
-    cardPopupImage.alt = "Photo of " + this._title;
-    cardPopupWindow.classList.add("popup_open");
+  _getCardPopup() {
+    cardPopupCaption.textContent = this._name;
+    cardPopupImage.src = this._link;
+    cardPopupImage.alt = "Photo of " + this._name;
+
+    openPopup(cardPopupWindow);
   }
 
   _handleClosePopup() {
-    cardPopupWindow.classList.remove("popup_open");
+    closePopup(cardPopupWindow);
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._setEventListeners();
+
+    this._element.querySelector(
+      ".card__image"
+    ).style.backgroundImage = `url('${this._link}')`;
+    this._element.querySelector(".card__title").textContent = this._name;
+
+    return this._element;
   }
 }
 
-initialCards.forEach((data) => {
-  const card = new Card(data, "#card__template");
-  const cardElement = card.renderCard();
-
-  document.querySelector(".elements__container").prepend(cardElement);
-});
+export default Card;
