@@ -1,3 +1,10 @@
+import {
+  openPopup,
+  handleEscEvent,
+  closePopup,
+  closePopupOnRemoteClick,
+} from "./index.js";
+
 const initialCards = [
   {
     title: "Yosemite Valley",
@@ -25,12 +32,15 @@ const initialCards = [
   },
 ];
 
+const likeButton = document.querySelector(".card__like-button");
+const deleteButton = document.querySelector(".card__delete-button");
 const cardPopupWindow = document.querySelector(".card-popup");
 const cardPopupImage = cardPopupWindow.querySelector(".card-popup__image");
 const cardPopupCaption = cardPopupWindow.querySelector(".card-popup__subtitle");
 const cardPopupClose = document.querySelector(".card-popup__close-button");
+const cardWrap = document.querySelector(".elements__container");
 
-class Card {
+export class Card {
   constructor(data, cardSelector) {
     this._title = data.title;
     this._image = data.image;
@@ -59,20 +69,21 @@ class Card {
   }
 
   _setEventListeners() {
-    const cardPopupImage = this._element.querySelector(".card__image");
-    cardPopupImage.addEventListener("click", () => {
-      this._handleOpenPopup();
-    });
+    this._element
+      .querySelector(".card__image")
+      .addEventListener("click", () => {
+        this._handleOpenPopup();
+      });
 
-    const likeButton = this._element.querySelector(".card__like-button");
-    likeButton.addEventListener("click", () => {
-      this._toggleLikeButton();
-    });
+    this._element
+      .querySelector(".card__like-button")
+      .addEventListener("click", () => {
+        this._toggleLikeButton();
+      });
 
-    const deleteButton = this._element.querySelector(".card__delete-button");
-    deleteButton.addEventListener("click", () => {
-      this._element.remove();
-    });
+    /*deleteButton.addEventListener("click", () => {
+      this.cardElement.remove();
+    });*/
 
     cardPopupClose.addEventListener("click", () => {
       this._handleClosePopup();

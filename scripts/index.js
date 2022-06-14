@@ -1,15 +1,50 @@
+//import { validationConfig } from "./validate";
+//import { renderCard } from "./card";
+/*const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+];
+
+const cardTemplate = document
+  .querySelector("#card__template")
+  .content.querySelector(".elements__item");*/
+
 //Wrappers
 const editPopupWindow = document.querySelector(".edit-popup");
 const createPopupWindow = document.querySelector(".create-popup");
+//const cardPopupWindow = document.querySelector(".card-popup");
 const editForm = document.forms.edit;
 const createForm = document.forms.create;
-const cardWrap = document.querySelector(".elements__container");
+//const cardWrap = document.querySelector(".elements__container");
 
 //Buttons, elements
 const editButton = document.querySelector(".profile__edit-button");
 const createButton = document.querySelector(".profile__add-button");
 const closeEditButton = document.querySelector(".edit-popup__close-button");
 const closeCreateButton = document.querySelector(".create-popup__close-button");
+//const cardPopupClose = document.querySelector(".card-popup__close-button");
 
 //Form data
 const profileName = document.querySelector(".profile__name");
@@ -19,14 +54,14 @@ const inputBio = editForm.elements.bio;
 const inputTitle = createForm.elements.title;
 const inputLink = createForm.elements.link;
 
-export function handleEscEvent(evt) {
+function handleEscEvent(evt) {
   if (evt.key === "Escape") {
     const activePopup = document.querySelector(".popup_open");
     closePopup(activePopup);
   }
 }
 
-export function closePopupOnRemoteClick(evt) {
+function closePopupOnRemoteClick(evt) {
   if (
     evt.target.classList.contains("popup") ||
     evt.target.classList.contains("popup__close-button")
@@ -36,7 +71,7 @@ export function closePopupOnRemoteClick(evt) {
   }
 }
 
-export function openPopup(popupWindow) {
+function openPopup(popupWindow) {
   popupWindow.classList.add("popup_open");
   document.addEventListener("keydown", handleEscEvent);
   document.addEventListener("mousedown", closePopupOnRemoteClick);
@@ -99,3 +134,51 @@ editButton.addEventListener("click", () => {
 createButton.addEventListener("click", () => {
   openPopup(createPopupWindow);
 });
+
+/*function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardImage = cardElement.querySelector(".card__image");
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+
+  cardTitle.textContent = data.name;
+  cardImage.style.backgroundImage = `url('${data.link}')`;
+
+  function toggleLikeButton(evt) {
+    if (evt.target === likeButton) {
+      evt.target.classList.toggle("card__like-button_active");
+    }
+  }
+
+  likeButton.addEventListener("click", toggleLikeButton);
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  cardElement.querySelector(".card__image").addEventListener("click", () => {
+    const cardPopupImage = cardPopupWindow.querySelector(".card-popup__image");
+    const cardPopupCaption = cardPopupWindow.querySelector(
+      ".card-popup__subtitle"
+    );
+    cardPopupCaption.textContent = data.name;
+    cardPopupImage.src = data.link;
+    cardPopupImage.alt = "Photo of " + data.name;
+
+    openPopup(cardPopupWindow);
+  });
+
+  return cardElement;
+}
+
+const renderCard = (data, wrapper) => {
+  const newCard = getCardElement(data);
+  wrapper.prepend(newCard);
+};
+
+initialCards.forEach((data) => {
+  renderCard(data, cardWrap);
+});*/
+
+export { openPopup, handleEscEvent, closePopup, closePopupOnRemoteClick };
