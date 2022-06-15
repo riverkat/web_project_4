@@ -1,9 +1,4 @@
-import {
-  handleEscEvent,
-  closePopupOnRemoteClick,
-  closePopup,
-  openPopup,
-} from "./utils.js";
+import { closePopup, openPopup } from "./utils.js";
 
 //Constants
 const cardPopupWindow = document.querySelector(".card-popup");
@@ -30,51 +25,48 @@ class Card {
 
   _setEventListeners() {
     const cardPopupImage = this._element.querySelector(".card__image");
-    cardPopupImage.addEventListener("click", () => {
-      this._getCardPopup();
-    });
+    cardPopupImage.addEventListener("click", this._getCardPopup);
 
     const likeButton = this._element.querySelector(".card__like-button");
-    likeButton.addEventListener("click", () => {
-      this._toggleLikeButton();
-    });
+    likeButton.addEventListener("click", this._toggleLikeButton);
 
     const deleteButton = this._element.querySelector(".card__delete-button");
-    deleteButton.addEventListener("click", () => {
-      this._element.remove();
-    });
+    deleteButton.addEventListener("click", this._handleDeleteCard);
 
-    cardPopupClose.addEventListener("click", () => {
-      this._handleClosePopup();
-    });
+    cardPopupClose.addEventListener("click", this._handleClosePopup);
   }
 
-  _toggleLikeButton() {
+  _toggleLikeButton = () => {
     this._element
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
-  }
+  };
 
-  _getCardPopup() {
+  _getCardPopup = () => {
     cardPopupCaption.textContent = this._name;
     cardPopupImage.src = this._link;
     cardPopupImage.alt = "Photo of " + this._name;
 
     openPopup(cardPopupWindow);
-  }
+  };
 
-  _handleClosePopup() {
+  _handleClosePopup = () => {
     closePopup(cardPopupWindow);
-  }
+  };
+
+  _handleDeleteCard = () => {
+    this._element.remove();
+  };
 
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector(
-      ".card__image"
-    ).style.backgroundImage = `url('${this._link}')`;
-    this._element.querySelector(".card__title").textContent = this._name;
+    const cardImage = this._element.querySelector(".card__image");
+    const cardTitle = this._element.querySelector(".card__title");
+
+    cardImage.style.backgroundImage = `url('${this._link}')`;
+    cardTitle.textContent = this._name;
 
     return this._element;
   }

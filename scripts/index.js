@@ -1,10 +1,5 @@
 import Card from "./Card.js";
-import {
-  handleEscEvent,
-  closePopupOnRemoteClick,
-  closePopup,
-  openPopup,
-} from "./utils.js";
+import { closePopup, openPopup } from "./utils.js";
 import FormValidator from "./FormValidator.js";
 
 //Constants
@@ -64,10 +59,6 @@ const inputBio = editForm.elements.bio;
 const inputTitle = createForm.elements.title;
 const inputLink = createForm.elements.link;
 
-function resetPopupForm(popupForm) {
-  popupForm.reset();
-}
-
 function fillProfileForm() {
   inputName.value = profileName.textContent;
   inputBio.value = profileBio.textContent;
@@ -80,7 +71,8 @@ function handleEditFormSubmit(evt) {
   profileBio.textContent = inputBio.value;
   closePopup(editPopupWindow);
   const popupForm = editPopupWindow.querySelector(".popup__form");
-  resetPopupForm(popupForm);
+  popupForm.reset();
+  editFormValidator.disableSubmitButton();
 }
 
 function handleCreateFormSubmit(evt) {
@@ -96,7 +88,8 @@ function handleCreateFormSubmit(evt) {
 
   closePopup(createPopupWindow);
   const popupForm = createPopupWindow.querySelector(".popup__form");
-  resetPopupForm(popupForm);
+  popupForm.reset();
+  createFormValidator.disableSubmitButton();
 }
 
 editForm.addEventListener("submit", handleEditFormSubmit);
