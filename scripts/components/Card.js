@@ -1,10 +1,10 @@
-import { closePopup, openPopup } from "./utils.js";
-
-//Constants
-const cardPopupWindow = document.querySelector(".card-popup");
-const cardPopupImage = document.querySelector(".card-popup__image");
-const cardPopupCaption = document.querySelector(".card-popup__subtitle");
-const cardPopupClose = document.querySelector(".card-popup__close-button");
+import { closePopup, openPopup } from "../utils/utils.js";
+import {
+  cardPopupCaption,
+  cardPopupWindow,
+  cardPopupImage,
+  cardPopupClose,
+} from "../utils/constants.js";
 
 class Card {
   constructor(data, cardSelector) {

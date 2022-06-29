@@ -1,63 +1,15 @@
-import Card from "./Card.js";
-import { closePopup, openPopup } from "./utils.js";
+import Card from "./components/Card.js";
+import { closePopup, openPopup } from "./utils/utils.js";
 import FormValidator from "./FormValidator.js";
-
-//Constants
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
-
-const formValidationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
-
-//Wrappers
-const editPopupWindow = document.querySelector(".edit-popup");
-const createPopupWindow = document.querySelector(".create-popup");
-const editForm = document.forms.edit;
-const createForm = document.forms.create;
-const cardWrap = document.querySelector(".elements__container");
-
-//Buttons, elements
-const editButton = document.querySelector(".profile__edit-button");
-const createButton = document.querySelector(".profile__add-button");
-const submitButton = document.querySelector(".popup__button");
-
-//Form data
-const profileName = document.querySelector(".profile__name");
-const profileBio = document.querySelector(".profile__bio");
-const inputName = editForm.elements.name;
-const inputBio = editForm.elements.bio;
-const inputTitle = createForm.elements.title;
-const inputLink = createForm.elements.link;
+import { initialCards, formValidationConfig } from "./utils/constants.js";
+import { cardWrap } from "./utils/constants.js";
+import Section from "./components/Section.js";
+import {
+  editForm,
+  editButton,
+  createForm,
+  createButton,
+} from "./utils/constants.js";
 
 function fillProfileForm() {
   inputName.value = profileName.textContent;
@@ -106,14 +58,26 @@ createButton.addEventListener("click", () => {
 });
 
 //Render
-const renderCard = (data, wrapper) => {
-  const card = new Card(data, "#card__template").generateCard();
-  wrapper.prepend(card);
-};
+//const renderCard = (data, wrapper) => {
+//const card = new Card(data, "#card__template").generateCard();
+//wrapper.prepend(card);
+//};
 
-initialCards.forEach((data) => {
-  renderCard(data, cardWrap);
-});
+//initialCards.forEach((data) => {
+//renderCard(data, cardWrap);
+//});
+
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, ".card");
+      const cardElement = card.generateCard();
+      cardList.addItem(cardElement);
+    },
+  },
+  cardWrap
+);
 
 //Validation
 const createFormValidator = new FormValidator(formValidationConfig, createForm);
